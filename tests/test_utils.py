@@ -17,28 +17,16 @@
 
 import unittest2 as unittest
 
-from saltmeter import package
+from saltmeter import utils
 
 
-class TestPackage(unittest.TestCase):
-    def test_get_package(self):
-        with self.assertRaises(NotImplementedError):
-            p = package.Package()
-            p.get_package()
-
-    def test_get_platform(self):
-        p = package.Package()
-        result = p._get_platform()
-        self.assertEquals('ubuntu', result)
-
-
-class TestUbuntuPackage(unittest.TestCase):
-    def test_get_package(self):
-        p = package.UbuntuPackage()
-        result = p.get_package('curl')
+class TestUtils(unittest.TestCase):
+    def test_execute(self):
+        u = utils.Utils()
+        result = u.execute('ls')
         self.assertTrue(result)
 
-    def test_get_package_invalid_package(self):
-        p = package.UbuntuPackage()
-        result = p.get_package('invalid-package-name')
+    def test_execute_invalid_command(self):
+        u = utils.Utils()
+        result = u.execute('invalid-command')
         self.assertFalse(result)

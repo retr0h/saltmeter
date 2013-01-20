@@ -15,36 +15,19 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import platform
 import subprocess
 
-from saltmeter import utils
 
-
-class Package(object):
-    def __init__(self):
-        self._platform = self._get_platform()
-
-    def get_package(self):
-        raise NotImplementedError
-
-    def _get_platform(self):
-        return platform.linux_distribution()[0].lower()
-
-
-class UbuntuPackage(Package):
-    def __init__(self):
-        pass
-
-    def get_package(self, package):
+class Utils(object):
+    def execute(self, cmd):
         """
 
-        :param package:
+        :param cmd:
         """
-        cmd = 'dpkg -s {0}'.format(package)
-        return utils.Utils().execute(cmd)
-
-# Platform Family...
-# ('Ubuntu', '12.10', 'quantal')
-# Debian
-# CentOS
+        try:
+            subprocess.check_call(cmd, shell=True, stdin=subprocess.PIPE,
+                                                   stdout=subprocess.PIPE,
+                                                   stderr=subprocess.PIPE)
+            return True
+        except subprocess.CalledProcessError:
+            return False
