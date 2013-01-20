@@ -25,9 +25,10 @@ class Utils(object):
         :param cmd:
         """
         try:
-            subprocess.check_call(cmd, shell=True, stdin=subprocess.PIPE,
-                                                   stdout=subprocess.PIPE,
-                                                   stderr=subprocess.PIPE)
+            subprocess.check_call(cmd, shell=True,
+                                  stdin=subprocess.PIPE,
+                                  stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE)
             return True
         except subprocess.CalledProcessError:
             return False

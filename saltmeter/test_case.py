@@ -27,7 +27,7 @@ class TestCase(unittest.TestCase):
 
     def _get_package_class(self):
         class_map = {
-          'ubuntu': package.UbuntuPackage()
+            'ubuntu': package.UbuntuPackage()
         }
         p = package.Package()
         platform = p._get_platform()
