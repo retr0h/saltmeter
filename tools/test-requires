@@ -1,0 +1,4 @@
+nose
+mock
+sphinx
+unittest2
