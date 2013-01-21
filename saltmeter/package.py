@@ -29,6 +29,9 @@ class Package(object):
         raise NotImplementedError
 
     def _get_platform(self):
+        """
+        Determine and return the name of the Linux OS distribution name.
+        """
         return platform.linux_distribution()[0].lower()
 
 
@@ -38,8 +41,9 @@ class UbuntuPackage(Package):
 
     def get_package(self, package):
         """
+        Determine if the given package is installed, and return a boolean.
 
-        :param package:
+        :param package: A string containing the name of the package.
         """
         cmd = 'dpkg -s {0}'.format(package)
         return utils.Utils().execute(cmd)

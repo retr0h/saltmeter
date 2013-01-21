@@ -19,13 +19,15 @@ import subprocess
 
 
 class Utils(object):
-    def execute(self, cmd):
+    def execute(self, command):
         """
+        Execute the given command, and return a boolean based on the command's
+        exit status.
 
-        :param cmd:
+        :param command: A string containing the command to execute.
         """
         try:
-            subprocess.check_call(cmd, shell=True,
+            subprocess.check_call(command, shell=True,
                                   stdin=subprocess.PIPE,
                                   stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE)

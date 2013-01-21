@@ -26,6 +26,9 @@ class TestCase(unittest.TestCase):
         super(unittest.TestCase, self).__init__(methodName)
 
     def _get_package_class(self):
+        """
+        Determine and return the package subclass to use.
+        """
         class_map = {
             'ubuntu': package.UbuntuPackage()
         }
@@ -34,8 +37,29 @@ class TestCase(unittest.TestCase):
         return class_map.get(platform)
 
     def assertPackageInstalled(self, expected):
+        """
+        Custom matcher to determine if the given package is installed, and
+        return a boolean assertion.
+
+        :param expected: A string containing the name of the package.
+        """
         result = self._clazz.get_package(expected)
         if result is True:
             self.assertTrue(True)
         else:
             self.assertTrue(False)
+
+    def assertFileExists(self):
+        pass
+
+    def assertFileIncludes(self):
+        pass
+
+
+#it "has the expected ownership and permissions" do
+#  file("/etc/fstab").must_exist.with(:owner, "root")
+#end
+
+#it "only root can modify the config file" do
+#  file("/etc/fstab").must_have(:mode, "644")
+#end
