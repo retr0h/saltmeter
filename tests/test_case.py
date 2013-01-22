@@ -47,12 +47,12 @@ class TestCase(saltmeter.TestCase):
 
     def test_assert_invalid_file_owner(self):
         with self.assertRaises(AssertionError):
-            self.assertFileMode(self._file, 666)
+            self.assertFileOwner(self._file, 666)
 
     def test_assert_file_group(self):
         self.assertFileGroup(self._file, 1000)
 
-    def test_assert_invalid_file_mode(self):
+    def test_assert_invalid_file_group(self):
         with self.assertRaises(AssertionError):
             self.assertFileGroup(self._file, 666)
 
