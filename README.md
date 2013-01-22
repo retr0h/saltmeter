@@ -1,12 +1,56 @@
 # saltmeter
 
-Integration testing of a [salt](https://github.com/saltstack/salt) enduced highstate.
+Integration testing of a [salt](https://github.com/saltstack/salt) enduced
+highstate.
 
 ## Usage
 
 Toying around with ways to test the outcome of a salt highstate run.
+Will likely add assertions as needed.
 
-TODO
+Import the library, and write unit tests by subclassing `saltmeter.TestCase`.
+
+```python
+from saltmeter import test_case as saltmeter
+
+class TestCase(saltmeter.TestCase):
+    ...
+```
+
+Assert a package installed (currently only supports Ubuntu):
+
+```python
+def test_assert_package_installed(self):
+    self.assertPackageInstalled('curl')
+```
+
+Assert a file contains content:
+
+```python
+def test_assert_file_includes(self):
+    self.assertFileIncludes(file, '^foo bar')
+```
+
+Assert a file's owner:
+
+```python
+def test_assert_file_owner(self):
+    self.assertFileOwner(file, 1000)
+```
+
+Assert a file's group ownership:
+
+```python
+def test_assert_file_group(self):
+    self.assertFileGroup(file, 1000)
+```
+
+Assert a file's permissions:
+
+```python
+def test_assert_file_mode(self):
+    self.assertFileMode(file, 0640)
+```
 
 ## License and Author
 
